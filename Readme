@@ -1,0 +1,44 @@
+a. Name: Wentao Wang
+b. Student ID: 1131649165
+c. What have I done in this assignment:
+	I have finished all the sockets part as described in the Project requirement. But the prefix function sometimes doesn't work well.
+
+
+d. what each file does:
+	client.c: read function name and input word;
+	          set TCP connection to aws server;
+	          receive result from aws and show results. 
+	
+	aws.c: set TCP with client, get the input;
+	 		set 3 UDP with back end server A, B, C, send the query input;
+	 		received the result from A, B, C;
+	 		send the final result to client;
+	 		set TCP with monitor;
+	 		send final result to monitor.
+	
+	serverA.c: read the backend file. implement a list to store the words and definations;
+				set UDP with aws; get query;
+				do the search form the list, send results back to aws.
+	serverB.c: same as A
+	serverC.c: same as A
+
+	monitor.c: set TCP with aws; receive the data from aws.
+
+	list.c: a help data structure to store the dictionary data.
+	list.h: header file of list.c
+
+e. The format of all the messages exchanged:
+   the format most aer same as the document said except for the prefix part.
+
+f. the idiosyncrasy:
+	
+	The monitor must start before starting the client.
+
+	The prefix doesn't work well if there's a large result. If the prefix function goes wrong, the monitor and aws need to restart. 
+
+
+
+g. reuse of the code:
+	Some code block for setting TCP and UDP are from "Beej's Guide to Network Programming -- Using Internet Sockets". 
+	They are marked in the program. 
+    Some part of list.c file is from my last semester CS402's homework's code. But I changed most of it.
